@@ -15,6 +15,9 @@ type Board = [[Int]]
 bSize :: Int
 bSize = 4
 
+distVals :: [Int]
+distVals = [2,4,2,2,2,2,4,2]
+
 newBoard :: Int -> Board
 newBoard n = replicate n (replicate n 0)
 
@@ -51,6 +54,19 @@ setValueAt :: Board -> (Int,Int) -> Int -> Board
 setValueAt board (x,y) value = take x board ++ placedRow ++ drop (x+1) board
                     where placedRow = [take y (board !! x) ++ [value] ++ drop (y+1) (board !! x)]
 
+newVal :: [a] -> IO a
+newVal vs = do 
+        x <- randomRIO (0, len vs - 1)
+        return (vs !! x)
+
+turn :: Board -> Move -> IO Board
+turn board move =
+        do
+        board <- pure(moveTo move board)
+        let empty = emptyTiles board
+        pos <- randomRIO(0, length empty - 1) >>= \x -> return (empty !! x)
+        val <- newVal distVals
+        return(setValueAt board pos val)
 
 startBoard :: IO Board
 startBoard = do
