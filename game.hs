@@ -49,6 +49,11 @@ emptyTiles board = filter (\(x,y) -> board !! x !! y == 0) coords
         where   coords = [(x,y) | x <- [0..n-1], y <- [0..n-1]]
                 n = len board
 
+valTiles :: (Eq a, Num a) => [[a]] -> [(Int, Int)]
+valTiles board = filter (\(x,y) -> board !! x !! y /= 0) coords
+        where   coords = [(x,y) | x <- [0..n-1], y <- [0..n-1]]
+                n = len board
+
 -- Set specified Value at position on Board
 setValueAt :: Board -> (Int,Int) -> Int -> Board
 setValueAt board (x,y) value = take x board ++ placedRow ++ drop (x+1) board
@@ -66,14 +71,30 @@ turn board move =
         let empty = emptyTiles board
         pos <- randomRIO(0, length empty - 1) >>= \x -> return (empty !! x)
         val <- newVal distVals
-        return(setValueAt board pos val)
+        return(setValueAt board pos 2)
 
 startBoard :: IO Board
 startBoard = do
                 board <- pure (newBoard bSize)
                 let empty = emptyTiles board
                 pos <- randomRIO (0, length empty - 1) >>= \x -> return (empty !! x)
-                board <- pure(setValueAt board pos 2)
+                val <- newVal distVals
+                board <- pure(setValueAt board pos val)
                 let empty = emptyTiles board
+                val <- newVal distVals
                 pos <- randomRIO (0, length empty - 1) >>= \x -> return (empty !! x)
-                pure(setValueAt board pos 2)
+                pure(setValueAt board pos val)
+
+loop :: Board -> IO ()
+loop b = do
+        board <- turn b LEFT
+        print board
+        if len (emptyTiles board) == 0 then
+                print "Vc perdeu !"
+        else do
+        loop (board)
+
+-- main :: IO ()
+-- main = do
+--         board <- startBoard
+--         loop (board)

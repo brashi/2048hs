@@ -57,6 +57,15 @@
     z-index: 2;
 }
 
+.tile.new {
+    -webkit-animation: appear 200ms ease 100ms;
+    -moz-animation: appear 200ms ease 100ms;
+    animation: appear 200ms ease 100ms;
+    -webkit-animation-fill-mode: backwards;
+    -moz-animation-fill-mode: backwards;
+    animation-fill-mode: backwards;
+  }
+
 .tile {
     height: 107px;
     width: 107px;
@@ -72,6 +81,67 @@
     transition-property: transform;
 }
 
-.tile.tile-pos-2-2 {
-    transform: translate(34px, 0px);
+
+.tile.pos-0-0 {
+    transform: translate(0px,0px);
+}
+
+.tile.pos-0-1 {
+    transform: translate(121px, 0px);
+}
+
+.tile.pos-0-2 {
+    transform: translate(242px, 0px);
+}
+
+.tile.pos-0-3 {
+    transform: translate(363px, 0px);
+}
+
+.tile.pos-1-0 {
+    transform: translate(0px,121px);
+}
+
+.tile.pos-1-1 {
+    transform: translate(121px, 121px);
+}
+
+.tile.pos-1-2 {
+    transform: translate(242px, 121px);
+}
+
+.tile.pos-1-3 {
+    transform: translate(363px, 121px);
+}
+
+.tile.pos-2-0 {
+    transform: translate(0px,242px);
+}
+
+.tile.pos-2-1 {
+    transform: translate(121px, 242px);
+}
+
+.tile.pos-2-2 {
+    transform: translate(242px, 242px);
+}
+
+.tile.pos-2-3 {
+    transform: translate(363px, 242px);
+}
+
+.tile.pos-3-0 {
+    transform: translate(0px,363px);
+}
+
+.tile.pos-3-1 {
+    transform: translate(121px, 363px);
+}
+
+.tile.pos-3-2 {
+    transform: translate(242px, 363px);
+}
+
+.tile.pos-3-3 {
+    transform: translate(363px, 363px);
 }
