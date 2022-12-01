@@ -52,15 +52,12 @@ setValueAt board (x,y) value = take x board ++ placedRow ++ drop (x+1) board
                     where placedRow = [take y (board !! x) ++ [value] ++ drop (y+1) (board !! x)]
 
 
-main :: IO ()
-main =
-        do
+startBoard :: IO Board
+startBoard = do
                 board <- pure (newBoard bSize)
                 let empty = emptyTiles board
                 pos <- randomRIO (0, length empty - 1) >>= \x -> return (empty !! x)
                 board <- pure(setValueAt board pos 2)
                 let empty = emptyTiles board
                 pos <- randomRIO (0, length empty - 1) >>= \x -> return (empty !! x)
-                board <- pure(setValueAt board pos 2)
-                print board
-                print pos
+                pure(setValueAt board pos 2)

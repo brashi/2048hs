@@ -1,0 +1,77 @@
+.container {
+    position: absolute;
+    height: 100vh;
+    
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
+}
+
+.static-grid {
+    position: absolute;
+    z-index: 1;
+}
+
+.static-row {
+    margin-bottom: 15px;
+}
+
+.static-row:last-child {
+    margin-bottom: 0px;
+}
+
+.static-row:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.grid-cell {
+    width: 106.25px;
+    height: 106.25px;
+    margin-right: 15px;
+    float: left;
+    border-radius: 3px;
+    background: rgba(238, 228, 218, 0.35);
+}
+
+.grid-cell:last-child {
+    margin-right: 0;
+}
+
+
+.game-grid {
+    width: 500px;
+    height: 500px;
+    padding: 15px;
+    background: coral;
+
+    margin: 0 auto;
+    margin-top: 30px;
+    box-sizing: border-box;
+}
+
+.tiles-grid {
+    position: absolute;
+    z-index: 2;
+}
+
+.tile {
+    height: 107px;
+    width: 107px;
+    line-height: 107px;
+
+    border-radius: 4px;
+    background: wheat;
+
+    text-align: center;
+    position: absolute;
+
+    transition: 100ms ease-in-out;
+    transition-property: transform;
+}
+
+.tile.tile-pos-2-2 {
+    transform: translate(34px, 0px);
+}
